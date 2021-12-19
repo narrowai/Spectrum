@@ -1,4 +1,4 @@
-def getweb():
+def getweb(debug=False):
 
 	import requests
 
@@ -14,7 +14,7 @@ def getweb():
 
 	start,end='class="grid grid--uniform','</div></div></div>'
 	start,end=text.find(start),text.find(end)+19
-	print(start,end)
+	if debug: print(start,end)
 
 	grid = open('grid.txt','w')
 	grid.write(text[start:end])
@@ -23,7 +23,7 @@ def getweb():
 	sold = open('sold.txt','w')
 	sold.write(str(text.count('Sold Out')-1))
 	sold.close()
-	print(str(text.count('Sold Out')-1))
+	if debug: print(str(text.count('Sold Out')-1))
 
 
 #dump = open('dump.txt','w')
