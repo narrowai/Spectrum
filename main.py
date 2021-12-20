@@ -1,5 +1,3 @@
-#import getweb
-
 from keepalive import keep_alive
 import os
 
