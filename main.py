@@ -38,8 +38,11 @@ def look():
 		pass
 
 while True:
-	print('DEBUG: dooodoo')
+	print('DEBUG: running')
 	if open("doupdate.txt", "rt").read() == '1':
 		getweb(True)
+		upd = open('doupdate.txt','w')
+		upd.write('0')
+		upd.close()
 	look()
 	time.sleep(60.0 - ((time.time() - starttime) % 60.0))
