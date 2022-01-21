@@ -1,28 +1,24 @@
-def getweb(debug=False):
+import requests
 
-	import requests
+def getweb(debug=False):
 
 	all = requests.get('https://spectrumoutfitters.co.uk/collections/short-binders')
 
 	text = str(all.text.encode('ascii', 'replace'))
 
-
-	dump = open('dump.txt','w')
-	dump.write(text)
-	dump.close()
-
+	if debug:
+		with open('dump.txt','w') as dump:
+			dump.write(text)
 
 	start,end='class="grid grid--uniform','</div></div></div>'
 	start,end=text.find(start),text.find(end)+19
 	if debug: print(start,end)
 
-	grid = open('grid.txt','w')
-	grid.write(text[start:end])
-	grid.close()
+	with open('grid.txt','w') as grid:
+		grid.write(text[start:end])
 
-	sold = open('sold.txt','w')
-	sold.write(str(text.count('Sold Out')-1))
-	sold.close()
+	with open('sold.txt','w') as sold:
+		sold.write(str(text.count('Sold Out')-1))
 	if debug: print(str(text.count('Sold Out')-1))
 
 
