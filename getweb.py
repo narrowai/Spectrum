@@ -1,6 +1,7 @@
-import requests
+import requests # to get the html code from the websites
 
-def getweb(debug=False):
+
+def updatew(debug=False):
 
 	all = requests.get('https://spectrumoutfitters.co.uk/collections/short-binders')
 
@@ -22,10 +23,20 @@ def getweb(debug=False):
 	if debug: print(str(text.count('Sold Out')-1))
 
 
-#dump = open('dump.txt','w')
-#dump.write(str(all.text.encode('ascii', 'replace')))
-#dump.close()
+def lookw(debug=False):
+	try:
+		all = requests.get('https://spectrumoutfitters.co.uk/collections/short-binders')
+		if not open('grid.txt').read() in str(all.text.encode('ascii', 'replace')): # if grid file contents isn't in the copy of the website just fetched
+			if all.text.count('Sold Out') - 1 > int(open("sold.txt", "rt").read()):
+				return "Spectrum", 'BINDER SOLD OUT'
+				print('BINDER SOLD OUT')
+			else:
+				return "Spectrum", str((all.text.count('span class=money') - 5) - (all.text.count('Sold Out') - 1)) + ' AVAILABLE'
+				print(str((all.text.count('span class=money') - 5) - (all.text.count('Sold Out') - 1)) + ' AVAILABLE')
 
-#grid = open('grid.txt','w')
-#grid.write(str(all.text.encode('ascii', 'replace'))[79349:117440])
-#grid.close()
+	except Exception as exception: # grab error name/type
+		return "Spectrum", str(type(exception).__name__) + ' OCCURRED'
+
+	else:
+		if debug: return "Spectrum", 'RUN SUCCESSFUL'
+		else: return 'BLIP'
