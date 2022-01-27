@@ -1,3 +1,5 @@
+import time # for logs
+
 def writelist(file, inlist):
     with open(file,'w') as m:
         for i in inlist:
@@ -20,3 +22,7 @@ def sublist(file, outlist):
     oldlist = readlist(file)
     newlist = exlist(oldlist, outlist)
     writelist(file, newlist)
+
+def log(message, file='log.txt'):
+	with open(file,'a') as l:
+		l.write('\n' + time.strftime("%d/%m %H:%M:%S ") + message)
