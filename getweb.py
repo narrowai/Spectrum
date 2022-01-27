@@ -39,4 +39,4 @@ def lookw(debug=False):
 
 	else:
 		if debug: return "Spectrum", 'RUN SUCCESSFUL'
-		else: return 'BLIP'
+		else: return 'BLIP' # NULL return if request returns with no difference
