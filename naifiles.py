@@ -23,6 +23,7 @@ def sublist(file, outlist):
     newlist = exlist(oldlist, outlist)
     writelist(file, newlist)
 
-def log(message, file='log.txt'):
+def log(message, file='log.txt', stamp=True):
 	with open(file,'a') as l:
-		l.write('\n' + time.strftime("%d/%m %H:%M:%S ") + message)
+		if stamp == True: l.write('\n' + time.strftime("%d/%m %H:%M:%S ") + message)
+		else: l.write('\n ' + message)

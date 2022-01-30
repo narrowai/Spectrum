@@ -9,7 +9,8 @@ from discord.ext import tasks # George's library
 import time
 
 keep_alive() # set up webserver for uptime robot to ping
-
+naifiles.log('', stamp=False)
+naifiles.log('CODE TURNED ON')
 #----------------------------------------------------------------
 
 TOKEN = os.environ['TOKEN']
@@ -19,20 +20,19 @@ client = discord.Client()
 @client.event
 async def on_ready():
 	naifiles.log(f'{client.user} has connected to Discord!')
-	thisloop.start()
-
+	mainloop.start()
 
 @tasks.loop(seconds=60)
-async def thisloop():
+async def mainloop():
 	hour = int(time.strftime("%H", time.localtime())) # save current hour as int 'hour', 0-24 format
 	if hour > 7 and hour < 23: # is time between 8:00am and 10:59pm?
 		if int(time.strftime('%M', time.localtime())) == 0: naifiles.log('DEBUG: running')
 		checkf() # checks the (depricated) update file
 		look = lookw() # actually runs all the checking and notifying code
-		if look != 'BLIP':
 
+		if look != 'BLIP': #if it actually returns something
 			for i in naifiles.readlist('channels.txt'):
-				await client.get_channel(int(i)).send(f"<@541391046681034762> {look[1]}")
+				await client.get_channel(int(i)).send(f"<@541391046681034762> {look[1]} https://bit.ly/naispec")
 			naifiles.log(f'NOTIFICATION ATTEMPTED: {look[1]}')
 
 
@@ -61,8 +61,16 @@ test - no touchie pls ;)''')
 		await message.channel.send('updated')
 
 	elif command[0] == 'test':
-		await message.channel.send('<@541391046681034762> example notification')
-		
+		await message.channel.send('<@541391046681034762> example notification https://bit.ly/naispec')
+
+	elif command[0] == 'logs':
+		if len(command) < 2: command.append(10)
+		sendlogs = naifiles.readlist('log.txt')[0-int(command[1]):]
+		messagers = '```'
+		for i in sendlogs: messagers += '\n'+i
+		messagers += '```'
+		await message.channel.send(f'last {int(command[1])} logs:\n{messagers}')
+
 	else: await message.channel.send(f'{command} command not recognised')
 
 

@@ -18,7 +18,7 @@ def updatew(debug=False):
 	with open('sold.txt','w') as sold:
 		sold.write(str(text.count('Sold Out')-1))
 
-	if debug: log('updating... sold out: ' + str(text.count('Sold Out')-1))
+	log('UPDATING sold out: ' + str(text.count('Sold Out')-1))
 
 
 def lookw(debug=False):
