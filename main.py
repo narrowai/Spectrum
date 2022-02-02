@@ -1,5 +1,4 @@
 import os
-from keepalive import keep_alive # an included python scipt, for 24/7 running
 from getweb import updatew, lookw, checkf # an included python script, to refresh reference copies of the site
 import discord
 import naifiles
@@ -8,12 +7,11 @@ from discord.ext import tasks # George's library
 
 import time
 
-keep_alive() # set up webserver for uptime robot to ping
 naifiles.log('', stamp=False)
 naifiles.log('CODE TURNED ON')
 #----------------------------------------------------------------
 
-TOKEN = os.environ['TOKEN']
+TOKEN = 'OTM1ODM1NzczMTk2OTg0NDIx.YfEa-w.QJUDwxikENIsDW1UuZCot4F1IRk' # TODO: Please find a better way to store this and then delete this version from history @narrowai
 client = discord.Client()
 
 
