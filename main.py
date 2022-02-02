@@ -11,12 +11,13 @@ naifiles.log('', stamp=False)
 naifiles.log('CODE TURNED ON')
 #----------------------------------------------------------------
 
-TOKEN = 'OTM1ODM1NzczMTk2OTg0NDIx.YfEa-w.QJUDwxikENIsDW1UuZCot4F1IRk' # TODO: Please find a better way to store this and then delete this version from history @narrowai
+TOKEN = naifiles.readlist('token.txt')[0]
 client = discord.Client()
 
 
 @client.event
 async def on_ready():
+	print(f'{client.user} has connected to Discord!')
 	naifiles.log(f'{client.user} has connected to Discord!')
 	mainloop.start()
 
