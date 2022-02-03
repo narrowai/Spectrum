@@ -13,7 +13,7 @@ naifiles.log('CODE TURNED ON')
 
 TOKEN = naifiles.readlist('token.txt')[0]
 client = discord.Client()
-
+notifs = 0
 
 @client.event
 async def on_ready():
@@ -23,6 +23,7 @@ async def on_ready():
 
 @tasks.loop(seconds=60)
 async def mainloop():
+	global notifs
 	hour = int(time.strftime("%H", time.localtime())) # save current hour as int 'hour', 0-24 format
 	if hour > 7 and hour < 23: # is time between 8:00am and 10:59pm?
 		if int(time.strftime('%M', time.localtime())) == 0: naifiles.log('DEBUG: running')
@@ -33,6 +34,11 @@ async def mainloop():
 			for i in naifiles.readlist('channels.txt'):
 				await client.get_channel(int(i)).send(f"<@541391046681034762> {look[1]} https://bit.ly/naispec")
 			naifiles.log(f'NOTIFICATION ATTEMPTED: {look[1]}')
+			notifs -=- 1
+			if notifs == 5:
+				updatew()
+				notifs = 0
+
 
 
 @client.event
