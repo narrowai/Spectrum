@@ -2,7 +2,7 @@
 
 ## running
 
-this code is designed to be hosted on repl.it, using uptime robot to keep it online 24/7 (although only check between 8:00am and 10:59pm).
+this code is designed to be hosted on my raspberry pi with screen in the terminal (although only check between 8:00am and 10:59pm).
 
 the purpose is to send a notification through "pushbullet" to my discord whenever a binder becomes available at https://spectrumoutfitters.co.uk/ as these are rarely in stock and sell out fast.
 
