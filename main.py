@@ -32,7 +32,7 @@ async def mainloop():
 
 		if look != 'BLIP': #if it actually returns something
 			for i in naifiles.readlist('channels.txt'):
-				await client.get_channel(int(i)).send(f"<@541391046681034762> {look[1]} https://bit.ly/naispec")
+				await client.get_channel(int(i)).send(f"{look[1]} https://bit.ly/naispec") # <@541391046681034762> 
 			naifiles.log(f'NOTIFICATION ATTEMPTED: {look[1]}')
 			notifs -=- 1
 			if notifs == 5:
@@ -66,7 +66,8 @@ test - no touchie pls ;)''')
 		await message.channel.send('updated')
 
 	elif command[0] == 'test':
-		await message.channel.send('<@541391046681034762> example notification https://bit.ly/naispec')
+		time.sleep(3)
+		await message.channel.send('example notification https://bit.ly/naispec') # <@541391046681034762> 
 
 	elif command[0] == 'logs':
 		if len(command) < 2: command.append(10)

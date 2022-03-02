@@ -26,9 +26,9 @@ def lookw(debug=False):
 		black = requests.get('https://spectrumoutfitters.co.uk/collections/short-binders/products/black-short-chest-binder?variant=15857211473963')
 		all = requests.get('https://spectrumoutfitters.co.uk/collections/short-binders')
 
-		if not '<span data-add-to-cart-text data-default-text="Add to cart">\n        Sold Out\n      </span>' in black.text:
+		'''if not '<span data-add-to-cart-text data-default-text="Add to cart">\n        Sold Out\n      </span>' in black.text:
 			return "Spectrum", 'BLACK BINDER AVAILIBLE'
-			print('BLACK BINDER AVAILABLE')
+			print('BLACK BINDER AVAILABLE')'''
 
 		if not open('grid.txt').read() in str(all.text.encode('ascii', 'replace')): # if grid file contents isn't in the copy of the website just fetched
 			if all.text.count('Sold Out') - 1 > int(open("sold.txt", "rt").read()):
